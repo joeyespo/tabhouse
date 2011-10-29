@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}{{ query_string.title() }}{% endblock %}
+
+{% block content %}
+<article>
+    <header>
+        <h1><a href="/">Tabhouse</a></h1>
+        <p>
+            <form action="{{ url_for('.search') }}">
+                <input type="text" name="q" size="120" autofocus="autofocus" />
+                <input type="submit" value="Find tabs" />
+            </form>
+        </p>
+    </header>
+    
+    <section>
+        <h2>{{ query_string.title() }}</h2>
+        {% if url %}
+        <p>Source: <a href="{{ url }}" target="_blank">{{ url }}</a></p>
+        {% endif %}
+        <p>
+<pre>
+{{ song_text }}
+</pre>
+        </p>
+    </section>
+    
+    {% if song_source %}
+    <section>
+        <h2>Source</h2>
+        <p>
+<pre>
+{{ song_source }}
+</pre>
+        </p> 
+    </section>
+    {% endif %}
+    
+</article>
+{% endblock %}
