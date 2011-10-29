@@ -1,0 +1,7 @@
+# Local config
+# Override the values from the default_config.py file here.
+
+DEBUG = True            # You can use 'None' to indicate 'True' when run with app.run() and 'False' otherwise
+
+HOST = 'localhost'      # Use 'localhost' for local testing only and '0.0.0.0' to allow remote connections also
+PORT = 80               # Port 80 allows you to visit http://localhost with no specified port; Flask uses 5000

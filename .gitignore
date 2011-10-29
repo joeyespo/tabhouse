@@ -1,0 +1,17 @@
+# Environment-specific files such as configuration, logs, and setup
+build/
+docs/
+logs/
+instance/
+logs/
+*.egg-info
+.epio-app
+epio.ini
+
+# Python bytecode files
+*.pyc
+
+# Misc and OS files
+Desktop.ini             # Directory atttributes in Windows.
+Thumbs.db               # Picture thumbnail cache in Windows 98.
+.DS_Store               # Directory attributes in Mac OS X.

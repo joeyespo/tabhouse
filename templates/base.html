@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>{%block fulltitle%}{% block title %}{% endblock %} - Tabhouse{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('.static', filename='style.css') }}" />
+    <link rel="shortcut icon" href="{{ url_for('.static', filename='favicon.ico') }}">
+    {% block additionalstyles %}{% endblock %}
+    {% block priorityscripts %}{% endblock %}
+</head>
+<body>
+    <div class="page">
+        <div class="content-container">
+            {% for message in get_flashed_messages() %}
+            <div class="flashed-messages">
+                <p class="flashed-message">{{ message }}</p>
+            </div>
+            {% endfor %}
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+            <div class="content-end"></div>
+        </div>
+    </div>
+{% block additionalscripts %}{% endblock %}
+</body>
+</html>
