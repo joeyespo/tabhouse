@@ -1,31 +1,31 @@
 {% extends "base.html" %}
 
-{% block title %}Your place for quality guitar tabs{% endblock %}
-
 {% block content %}
 <article>
-    <header>
-        <h1><a href="/">Tabhouse</a></h1>
-        <p>Welcome! Enter an <strong>artist</strong> and <strong>song name</strong> and we'll find you the guitar tab.</p>
-    </header>
-    
-    <section>
-        <h2>Search Query</h2>
-        <p>
+    <div class="content">
+        <header>
+            <h1><a href="/">Tabhouse</a></h1>
+            <p>Welcome! Enter an <strong>artist</strong> and <strong>song name</strong> and we'll find you the guitar tab.</p>
+        </header>
+        
+        <section class="search">
+            <h2>Search Query</h2>
             <form action="{{ url_for('.search') }}">
-                <input type="text" name="q" size="120" autofocus="autofocus" />
-                <input type="submit" value="Find tabs" />
+                <div class="search-form">
+                    <input type="text" id="q" name="q" size="120" autofocus="autofocus" />
+                    <input type="submit" id="submit" value="Find tabs" />
+                </div>
             </form>
-        </p>
-    </section>
-    
-    <section>
-        <h2>Example Searches</h2>
-        <ul>
-            <li> <a title="Will find the top artist: Metallica" href="{{ url_for('.search', q='Nothing Else Matters') }}">Nothing Else Matters</a> </li>
-            <li> <a title="Will use the top song: Kryptonite" href="{{ url_for('.search', q='Three Doors Down') }}">Three Doors Down</a> </li>
-            <li> <a title="Would these examples really be complete without this?" href="{{ url_for('.search', q='Led Zeppelin Stairway to Heaven') }}">Led Zeppelin Stairway to Heaven</a> </li>
-        </ul>
-    </section>
+        </section>
+        
+        <section class="examples">
+            <h2>Examples</h2>
+            <ul>
+                <li> <a title="Will use the top song: Kryptonite" href="{{ url_for('.search', q='Three Doors Down') }}">Three Doors Down</a> </li>
+                <li> <a title="Will find the top artist: Metallica" href="{{ url_for('.search', q='Nothing Else Matters') }}">Nothing Else Matters</a> </li>
+                <li> <a title="Would these examples really be complete without it?" href="{{ url_for('.search', q='Led Zeppelin Stairway to Heaven') }}">Led Zeppelin Stairway to Heaven</a> </li>
+            </ul>
+        </section>
+    </div>
 </article>
 {% endblock %}

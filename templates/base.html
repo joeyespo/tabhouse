@@ -2,32 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>{%block fulltitle%}{% block title %}{% endblock %} - Tabhouse{% endblock %}</title>
+    <title>{%block fulltitle%}{% block title %}Your place for quality guitar tabs{% endblock %} - Tabhouse{% endblock %}</title>
+    <!--[if !IE 7]><style>#wrap {display:table;height:100%}</style><![endif]-->
+    <link rel="stylesheet" href="{{ url_for('.static', filename='reset.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('.static', filename='sticky-footer.css') }}" />
     <link rel="stylesheet" href="{{ url_for('.static', filename='style.css') }}" />
     <link rel="shortcut icon" href="{{ url_for('.static', filename='favicon.ico') }}">
-    {% block additionalstyles %}{% endblock %}
-    {% block priorityscripts %}{% endblock %}
+    <!--[if lt IE 9]><script src="{{ url_for('.static', filename='html5.js') }}"></script><![endif]-->
+    {% block styles %}{% endblock %}
+    {% block scripts %}{% endblock %}
 </head>
 <body>
-    <div class="page">
-        <div class="content-container">
+    <div id="wrap">
+        <div id="main" class="page">
             {% for message in get_flashed_messages() %}
             <div class="flashed-messages">
                 <p class="flashed-message">{{ message }}</p>
             </div>
             {% endfor %}
-            <div class="content">
-                {% block content %}{% endblock %}
-            </div>
-            <div class="content-end"></div>
+            {% block content %}{% endblock %}
         </div>
     </div>
-    <footer>
-        {% block footer %}
-        <p>All tabs are aggregated from the web and belong to their respectful artists. Please support them.</p>
-        <p>Tabhouse &copy; Copyright 2011 by <a href="http://joeyespo.com/">Joe Esposito</a></p>
-        {% endblock %}
+    <footer id="footer">
+        <div class="footer">
+            {% block footer %}
+            <p>All tabs are aggregated from the web and belong to their respectful artists. Please support them.</p>
+            <p>Tabhouse &copy; Copyright 2011 by <a href="http://joeyespo.com/">Joe Esposito</a></p>
+            {% endblock %}
+        </div>
     </footer>
-{% block additionalscripts %}{% endblock %}
+    {% block additionalscripts %}{% endblock %}
 </body>
 </html>
