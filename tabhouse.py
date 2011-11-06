@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """\
-TabHouse
+Tabhouse
 
 A site to find quality guitar tabs.
 """
