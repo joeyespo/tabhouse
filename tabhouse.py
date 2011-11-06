@@ -32,6 +32,20 @@ def search():
     return render_template('search.html', query_string=query_string, url=url, song_text=song_text, song_source=song_source)
 
 
+# Error handlers
+@app.errorhandler(404)
+def page_not_found(error=None):
+    # TODO: Log broken link
+    print '\n404: %s\n  -> %s\n' % (request.url, request.referrer)
+    return render_template('error404.html'), 404
+
+
+@app.errorhandler(500)
+def internal_error(error=None):
+    # TODO: Log the error
+    return render_template('error500.html'), 500
+
+
 # Run development server
 if __name__ == '__main__':
     app.run(app.config['HOST'], app.config['PORT'], app.debug != False)
