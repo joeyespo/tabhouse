@@ -100,6 +100,43 @@ input {
 }
 
 
+/* Search results page */
+.results-content {
+    margin-top: 1em;
+}
+.results-content h1 {
+    float: left;
+    font-size: 2em;
+    font-family: Arial;
+    font-weight: bold;
+}
+.results-content h1 a {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+.results-content .search-header h1 {
+    width: 116px;
+    margin-top: 1px;
+}
+.results-content .search-header .search-form {
+    float: left;
+    width: 880px;
+    margin-left: 4px;
+}
+.results-content .search-header #q {
+    width: 780px;
+}
+.results-content .search-header #submit {
+    width: 74px;
+}
+.results-content .search-header {
+    clear: both;
+    margin: 0 auto 0 auto;
+    width: 1000px;
+}
+
+
 /* Error pages */
 .error-content {
     margin-top: 2em;
