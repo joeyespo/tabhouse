@@ -16,25 +16,33 @@ def read_url(url):
         response.close()
 
 
-def google_search(q, result_count = 4):
-    # TODO: Use logging
-    search_results = read_url('http://ajax.googleapis.com/ajax/services/search/web?v=1.0&%s' % urlencode({'q': q}))
+def re_search(url):
+    search_results = read_url(url)
     results = json.loads(search_results)
     data = results['responseData']
-    print 'Total results: %s' % data['cursor']['estimatedResultCount']
     hits = data['results']
-    print 'Top %d hits:' % len(hits)
-    text = ''
+    results = [hit['url'] for hit in hits]
+    more_url = data['cursor']['moreResultsUrl']
+    return results, more_url
+
+
+def web_search(q, result_count = 4):
+    # TODO: User IP, see http://code.google.com/apis/websearch/docs/
+    # TODO: Use direct page parsing (from client?) and fall back to the API version
+    next_url = 'http://ajax.googleapis.com/ajax/services/search/web?v=1.0&%s' % urlencode({'q': q})
+    return re_search(next_url)[0]
+    # TODO: Get all results
     results = []
-    for h in hits:
-        results.append(h['url'])
-    print 'For more results, see %s' % data['cursor']['moreResultsUrl']
-    # TODO: Get more URLs, up to result_count
+    while len(results) < result_count:
+        results_part, next_url = re_search(next_url)
+        if not results_part:
+            break
+        results.append(results_part)    # TODO: min(result_count, a)
     return results
 
 
 def search_song(q, result_count = 4):
-    results = google_search(q + ' guitar tab', result_count)
+    results = web_search(q + ' guitar tab', result_count)
     if not results:
         return None
     # TODO: load result pages and parse songs
