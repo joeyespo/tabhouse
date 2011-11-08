@@ -144,6 +144,48 @@
        y2="939.78284"
        gradientUnits="userSpaceOnUse"
        gradientTransform="translate(0.88388618,0)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3686"
+       id="linearGradient2854"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(0.88388618,0)"
+       x1="103.27821"
+       y1="938.72217"
+       x2="128"
+       y2="939.78284" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3662"
+       id="radialGradient2869"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.1173677,0,0,0.44186111,-141.91377,24.647894)"
+       cx="126.98095"
+       cy="44.160858"
+       fx="126.98095"
+       fy="44.160858"
+       r="60.497154" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3686"
+       id="linearGradient2871"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(0.88388618,0)"
+       x1="103.27821"
+       y1="938.72217"
+       x2="128"
+       y2="939.78284" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3662"
+       id="radialGradient2883"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.1173677,0,0,0.44186111,-141.91377,846.41178)"
+       cx="126.98095"
+       cy="44.160858"
+       fx="126.98095"
+       fy="44.160858"
+       r="60.497154" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -152,9 +194,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="-19.676577"
-     inkscape:cy="105.20946"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="18.085913"
+     inkscape:cy="143.29063"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -174,7 +216,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -182,49 +224,13 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Lights"
-     style="display:inline">
-    <path
-       style="fill:url(#radialGradient3682);fill-opacity:1;fill-rule:evenodd;stroke:#dedede;stroke-width:0;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       d="M 255.04632,17.42952 254.91509,70.8922 127.48095,43.30183 255.04632,17.42952 z"
-       id="rect3697"
-       sodipodi:nodetypes="cccc" />
-  </g>
+     style="display:inline" />
   <g
      inkscape:label="Building"
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-796.36218)"
      style="display:inline">
-    <path
-       style="fill:url(#linearGradient3692);fill-opacity:1;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       d="m 150.3379,994.28068 c -0.41056,-7.37069 -1.9157,-29.78512 -2.20977,-39.02358 -0.58449,-18.36228 -4.53819,-72.09338 -6.65951,-94.36724 l -25.9967,0.16834 c -2.60566,21.83751 -6.15949,73.60336 -7.27126,94.42973 -0.79757,14.94053 -2.5809,31.64061 -2.5378,39.03157 l 44.67504,-0.23882 z"
-       id="path2880"
-       sodipodi:nodetypes="csccscc" />
-    <text
-       xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="89.90847"
-       y="858.06213"
-       id="text2858"><tspan
-         sodipodi:role="line"
-         id="tspan2860"
-         x="89.90847"
-         y="858.06213"
-         style="font-weight:bold;font-family:Arial;-inkscape-font-specification:Arial Bold">T<tspan
-   style="font-weight:bold;fill:#af3333;fill-opacity:1;stroke:#000000;stroke-width:1.20000005;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
-   id="tspan2830">A</tspan>B</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:32.0634079px;font-style:normal;font-weight:normal;fill:#af3333;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
-       x="64.163994"
-       y="1074.4495"
-       id="text3736"
-       transform="scale(1.0528532,0.94980002)"><tspan
-         sodipodi:role="line"
-         id="tspan3738"
-         x="64.163994"
-         y="1074.4495"
-         style="font-weight:bold;stroke:#000000;stroke-width:1.20000005;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;font-family:Arial;-inkscape-font-specification:Arial Bold">HOUSE</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
@@ -233,13 +239,55 @@
        id="text3700"
        transform="translate(0,796.36218)"><tspan
          sodipodi:role="line"
-         id="tspan3702"></tspan></text>
-    <rect
-       style="fill:#af3333;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.99999988;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       id="rect3712"
-       width="43.914215"
-       height="4.5"
-       x="106.04289"
-       y="860.36218" />
+         id="tspan3702" /></text>
+    <path
+       style="fill:url(#radialGradient2883);fill-opacity:1;fill-rule:evenodd;stroke:#dedede;stroke-width:0;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       d="m 255.04632,839.19341 -0.13123,53.46268 -127.43414,-27.59037 127.56537,-25.87231 z"
+       id="rect3697"
+       sodipodi:nodetypes="cccc" />
+    <text
+       xml:space="preserve"
+       style="font-size:32.0634079px;font-style:normal;font-weight:normal;fill:#af3333;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="64.163994"
+       y="1062.4808"
+       id="text3736"
+       transform="scale(1.0528532,0.94980002)"><tspan
+         sodipodi:role="line"
+         id="tspan3738"
+         x="64.163994"
+         y="1062.4808"
+         style="font-weight:bold;stroke:#000000;stroke-width:1.20000005;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;font-family:Arial;-inkscape-font-specification:Arial Bold">HOUSE</tspan></text>
+    <g
+       id="g2846"
+       transform="translate(-2.4748764,25.401711)">
+      <text
+         id="text2858"
+         y="858.06213"
+         x="89.90847"
+         style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           style="font-weight:bold;font-family:Arial;-inkscape-font-specification:Arial Bold"
+           y="858.06213"
+           x="89.90847"
+           id="tspan2860"
+           sodipodi:role="line">T<tspan
+   id="tspan2830"
+   style="font-weight:bold;fill:#af3333;fill-opacity:1;stroke:#000000;stroke-width:1.20000005;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;font-family:Arial;-inkscape-font-specification:Arial Bold">A</tspan>B</tspan></text>
+      <g
+         id="g2842">
+        <path
+           style="fill:url(#linearGradient2871);fill-opacity:1;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 150.69145,953.26849 c -2.4178,-44.50527 -5.34199,-47.9701 -9.22283,-92.37863 l -25.9967,0.16834 c -3.3404,44.41416 -8.06256,47.89849 -9.45551,92.44911 l 44.67504,-0.23882 z"
+           id="path2880"
+           sodipodi:nodetypes="ccccc" />
+        <rect
+           style="fill:#af3333;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.99999988;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           id="rect3712"
+           width="43.914215"
+           height="4.5"
+           x="106.04289"
+           y="860.36218" />
+      </g>
+    </g>
   </g>
 </svg>
