@@ -5,7 +5,10 @@ Defines functions for searching for guitar tabs using Google.
 """
 
 import json
+import urlparse
 from urllib import urlencode, urlopen
+from httplib import HTTPConnection
+from guitar import CreateSong
 
 
 def read_url(url):
@@ -17,33 +20,96 @@ def read_url(url):
 
 
 def re_search(url):
-    search_results = read_url(url)
-    results = json.loads(search_results)
-    data = results['responseData']
-    hits = data['results']
-    results = [hit['url'] for hit in hits]
-    more_url = data['cursor']['moreResultsUrl']
-    return results, more_url
+    data = json.loads(read_url(url))['responseData']
+    return [hit['url'] for hit in data['results']], data['cursor']['moreResultsUrl']
 
 
-def web_search(q, result_count = 4):
-    # TODO: User IP, see http://code.google.com/apis/websearch/docs/
+def web_search(q, result_count=4):
+    # TODO: Provide the client IP address for more results, see http://code.google.com/apis/websearch/docs/
     # TODO: Use direct page parsing (from client?) and fall back to the API version
-    next_url = 'http://ajax.googleapis.com/ajax/services/search/web?v=1.0&%s' % urlencode({'q': q})
-    return re_search(next_url)[0]
-    # TODO: Get all results
-    results = []
-    while len(results) < result_count:
-        results_part, next_url = re_search(next_url)
-        if not results_part:
-            break
-        results.append(results_part)    # TODO: min(result_count, a)
-    return results
+    urls, next_url = re_search('http://ajax.googleapis.com/ajax/services/search/web?v=1.0&%s' % urlencode({'q': q}))
+    # TODO: Get all results, up to result_count
+    return urls
 
 
-def search_song(q, result_count = 4):
-    results = web_search(q + ' guitar tab', result_count)
-    if not results:
+def search_song(q, result_count=4, show_source=False):
+    urls = web_search(q + ' guitar tab', result_count)
+    if not urls:
         return None
-    # TODO: load result pages and parse songs
-    return results[0], '\n'.join(results), ''
+    
+    songs = []
+    for url in urls:
+        print 'Checking for song:', url
+        try:
+            html = read_url(url)
+        except Exception, ex:
+            print 'Error fetching %s: %s' % (url, ex)
+            continue
+        texts = get_pre_text(html)
+        for text in texts:
+            print '  -> Found song!'
+            song = CreateSong(text, url)
+            if song is not None and len(song.Staffs) > 0:
+                song.ShowUrl = False
+                songs.append(song)
+    
+    song = get_best_song(songs)
+    if not song:
+        return None, '', ''
+    if len(song.Errors) > 0:
+        s = ''
+        for error in song.Errors:
+            s += 'Error while parsing song: %s\n' % error
+        print s
+        return s
+    
+    song_url = song.Url
+    song_text = str(song)
+    song_source = song.Source if show_source or len(song_text.split('\n')) < 20 else ''
+    return song_url, song_text, song_source
+
+
+# TODO: Clean this up
+def get_pre_text(html):
+    def between(s, beginswith='', endswith='', start=0, end=None):
+        end = end or len(s)
+        i = s.find(beginswith, start, end) if beginswith else 0
+        if i == -1:
+            return -1, -1
+        i += len(beginswith)
+        j = s.find(endswith, i, end) if endswith else len(s)
+        return i, j
+    preList = []
+    j = 0
+    while True:
+        i, j = between(html.lower(), '<pre>', '</pre>', j)
+        if i == -1 or j == -1:
+            break
+        pre = html[i:j]
+        while True:
+            k = pre.lower().rfind('<pre>')
+            if k == -1: break
+            k += len('<pre>')
+            pre = pre[k:]
+        preList.append(pre.replace('<br>', '\n').replace('<BR>', '\n'))
+    return preList
+
+
+def get_best_song(songs):
+    # TODO: Use a better heuristic than the minimum error count which has the longest staff
+    if len(songs) == 0:
+        return None
+    maxerrors = 0
+    for song in songs:
+        maxerrors = min(len(song.Errors), maxerrors)
+    size = 0
+    index = 0
+    for i in range(len(songs)):
+        song = songs[i]
+        if song.Errors > maxerrors:
+            continue
+        cursize = len(song.Staffs)
+        if cursize >= size:
+            size = cursize
+            index = i
+    return songs[index]

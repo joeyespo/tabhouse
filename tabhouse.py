@@ -26,14 +26,16 @@ def index():
 @app.route('/search')
 def search():
     q = request.args.get('q')
+    depth = int(request.args.get('depth', 10))
+    show_source = bool(request.args.get('source'))
     if not q:
         return redirect(url_for('index'))
-    result = search_song(q)
+    result = search_song(q, depth, show_source)
     if not result:
         # TODO: Show 'no results' page
         return render_template('search.html', query=q.title(), url='', song_text='', song_source='')
-    url, song_text, song_source = search_song(q)
-    return render_template('search.html', query=q.title(), url=url, song_text=song_text, song_source=song_source)
+    song_url, song_text, song_source = search_song(q)
+    return render_template('search.html', query=q.title(), song_url=song_url, song_text=song_text, song_source=song_source)
 
 
 # Error handlers

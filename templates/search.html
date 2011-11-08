@@ -20,9 +20,11 @@
         
         <section>
             <h2>{{ query }}</h2>
-            {% if url %}
-            <p>Source: <a href="{{ url }}" target="_blank">{{ url }}</a></p>
+            
+            {% if song_url %}
+            <p>Source: <a href="{{ song_url }}" target="_blank">{{ song_url }}</a></p>
             {% endif %}
+            
             <p>
 <pre>
 {{ song_text }}
@@ -33,6 +35,7 @@
         {% if song_source %}
         <section>
             <h2>Source</h2>
+            
             <p>
 <pre>
 {{ song_source }}
