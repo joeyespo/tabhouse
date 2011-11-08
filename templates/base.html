@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>{%block fulltitle%}{% block title %}Your place for quality guitar tabs{% endblock %} - Tabhouse{% endblock %}</title>
+    <title>{% block fulltitle %}{% block title %}Your place for quality guitar tabs{% endblock %} - Tabhouse{% endblock %}</title>
     <!--[if !IE 7]><style>#wrap {display:table;height:100%}</style><![endif]-->
     <link rel="stylesheet" href="{{ url_for('.static', filename='reset.css') }}" />
     <link rel="stylesheet" href="{{ url_for('.static', filename='sticky-footer.css') }}" />
@@ -11,6 +11,7 @@
     <!--[if lt IE 9]><script src="{{ url_for('.static', filename='html5.js') }}"></script><![endif]-->
     {% block styles %}{% endblock %}
     {% block scripts %}{% endblock %}
+    {% include 'analytics.html' %}
 </head>
 <body>
     <div id="wrap">

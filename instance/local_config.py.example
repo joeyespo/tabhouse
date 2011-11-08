@@ -6,4 +6,6 @@ DEBUG = True            # Use 'None' or exclude this to use debug mode only when
 HOST = 'localhost'      # Use 'localhost' for local testing only and '0.0.0.0' to allow remote connections also
 PORT = 80               # Port 80 allows you to visit http://localhost with no specified port; Flask uses 5000
 
-SECRET_KEY = <random>   # Generate a random string to use here or use a placeholder such as 'DEVELOPMENT-KEY'
+SECRET_KEY = None       # Generate a random string to use here or use a placeholder such as 'DEVELOPMENT-KEY'
+
+ANALYTICS_SCRIPT = ''   # Put your analytics JavaScript code here
