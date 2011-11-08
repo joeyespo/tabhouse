@@ -13,8 +13,24 @@ h1 {
     color: #222;
 }
 
+a {
+    color: #38f;
+}
+a:hover {
+    color: #f53;
+}
+
 strong {
     font-weight: bold;
+}
+
+input {
+    padding: 2px;
+}
+
+#submit {
+    margin-left: 4px;
+    padding: 2px 8px;
 }
 
 .page {
@@ -29,26 +45,30 @@ strong {
 
 #footer {
     background-color: #eee;
+    margin: 0;
 }
 .footer {
     border-top: 2px solid #ddd;
     padding-top: 8px;
-    color: #888;
+    color: #777;
     font-size: 12px;
     text-shadow: #fff 1px 1px 0px;
 }
 .footer a {
     color: #888;
 }
+.footer a:hover {
+    color: #aaa;
+}
 
 
 /* Sticky footer */
 #main {
-    padding-bottom: 64px;
+    padding-bottom: 56px;
 }
 #footer {
-    margin-top: -64px;
-    height: 64px;
+    margin-top: -56px;
+    height: 56px;
 }
 
 
@@ -96,7 +116,7 @@ strong {
 
 /* Main page */
 .content {
-    margin-top: 4em;
+    margin-top: 6em;
 }
 .content h1 {
     font-size: 3em;
@@ -109,6 +129,11 @@ strong {
     color: black;
     font-weight: bold;
     text-decoration: none;
+    -webkit-transition: color .25s linear;
+    -moz-transition: color .25s linear;
+}
+.content h1 a:hover {
+    color: #c33;
 }
 
 .main-search {
@@ -123,13 +148,6 @@ strong {
     margin: 0 auto;
     width: 860px;
 }
-input {
-    padding: 2px;
-}
-#submit {
-    margin-left: 4px;
-    padding: 2px 8px;
-}
 
 .examples h2 {
     margin-top: 2em;
@@ -137,14 +155,11 @@ input {
     font-weight: bold;
     margin-bottom: 4px;
 }
-.examples a {
-    color: #38f;
-}
 
 
 /* Results page */
 .results-content {
-    margin-top: 1em;
+    margin-top: 1.5em;
 }
 .results-content h1 {
     float: left;
@@ -156,24 +171,58 @@ input {
     color: black;
     font-weight: bold;
     text-decoration: none;
+    -webkit-transition: color .25s linear;
+    -moz-transition: color .25s linear;
 }
-.results-content .results-header h1 {
+.results-content h1 a:hover {
+    color: #c33;
+}
+
+.results-header h1 {
     width: 116px;
     margin-top: 1px;
 }
-.results-content .results-header form {
+.results-header form {
     float: left;
     width: 880px;
     margin-left: 4px;
 }
-.results-content .results-header #q {
+.results-header #q {
     width: 780px;
 }
-.results-content .results-header #submit {
+.results-header #submit {
     width: 74px;
 }
-.results-content .results-header {
+.results-header {
     clear: both;
     margin: 0 auto 0 auto;
     width: 1000px;
+}
+
+.song {
+    margin: 3.5em 0;
+}
+.song h2 {
+    color: black;
+    font-size: 2.5em;
+    font-family: Arial;
+    font-weight: bold;
+    margin-top: 1em
+}
+.song p, .song pre {
+    margin-top: 2em;
+}
+.song-source {
+    color: #555;
+    border-top: 1px dashed #ccc;
+    background-color: #f8f8f8;
+    text-shadow: #fff 1px 1px 0px;
+    padding-bottom: 3em;
+}
+.song-source h2 {
+    margin-top: .5em;
+    font-size: 2em;
+}
+.song-source pre {
+    margin-top: 2em;
 }

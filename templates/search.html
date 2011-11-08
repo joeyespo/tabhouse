@@ -18,29 +18,25 @@
             </div>
         </header>
         
-        <section>
+        <section class="song">
             <h2>{{ query }}</h2>
             
             {% if song_url %}
             <p>Source: <a href="{{ song_url }}" target="_blank">{{ song_url }}</a></p>
             {% endif %}
             
-            <p>
 <pre>
 {{ song_text }}
 </pre>
-            </p>
         </section>
         
         {% if song_source %}
-        <section>
+        <section class="song-source">
             <h2>Source</h2>
             
-            <p>
 <pre>
 {{ song_source }}
 </pre>
-            </p> 
         </section>
         {% endif %}
     
