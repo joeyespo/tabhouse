@@ -3,5 +3,7 @@
 
 DEBUG = None
 
+DOMAIN = None
+
 HOST = 'localhost'
 PORT = 5000

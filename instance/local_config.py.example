@@ -8,4 +8,6 @@ PORT = 80               # Port 80 allows you to visit http://localhost with no s
 
 SECRET_KEY = None       # Generate a random string to use here or use a placeholder such as 'DEVELOPMENT-KEY'
 
+DOMAIN = 'example.com'  # Add your website domain when uploaded to production; otherwise, use None for development
+
 ANALYTICS_SCRIPT = ''   # Put your analytics JavaScript code here
