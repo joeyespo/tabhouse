@@ -42,11 +42,39 @@ def search_song(q, result_count=4, show_source=False):
         return '', '', ''
     
     print
+    print 'Checking for song:'
+    for url in urls:
+        print '  - Checking:', url
+        try:
+            html = read_url(url)
+        except Exception, ex:
+            print '  - Error fetching %s: %s' % (url, ex)
+            continue
+        for text in get_pre_text(html):
+            song = CreateSong(text, url, show_url=False)
+            if not song or not song.Staffs:
+                continue
+            print '    Found song!'
+            # TODO: Log errors
+            if len(song.Errors) > 0:
+                print '\n'.join([' *** Error while parsing song: ' + message for message in song.Errors])
+            song_url = song.Url
+            song_text = str(song)
+            song_source = song.Source if show_source or len(song_text.split('\n')) < 20 else ''
+            return song_url, song_text, song_source
+
+
+def search_song_new(q, result_count=4, show_source=False):
+    urls = web_search(q + ' guitar tab', result_count)
+    if not urls:
+        return '', '', ''
+    
+    print
     print 'Checking for songs:'
     
     songs = []
     for url in urls:
-        print '  - Checking for song:', url
+        print '  - Checking:', url
         try:
             html = read_url(url)
         except Exception, ex:
@@ -81,6 +109,7 @@ def search_song(q, result_count=4, show_source=False):
 
 # TODO: Clean this up
 def get_pre_text(html):
+    html_insensitive = html.lower()
     def between(s, beginswith='', endswith='', start=0, end=None):
         end = end or len(s)
         i = s.find(beginswith, start, end) if beginswith else 0
@@ -92,16 +121,11 @@ def get_pre_text(html):
     preList = []
     j = 0
     while True:
-        i, j = between(html.lower(), '<pre>', '</pre>', j)
-        if i == -1 or j == -1:
+        i, j = between(html_insensitive, '<pre>', '</pre>', j)
+        if j == -1:
             break
-        pre = html[i:j]
-        while True:
-            k = pre.lower().rfind('<pre>')
-            if k == -1: break
-            k += len('<pre>')
-            pre = pre[k:]
-        preList.append(pre.replace('<br>', '\n').replace('<BR>', '\n'))
+        preList.append(html[i:j].replace('<br>', '\n').replace('<BR>', '\n'))
+        j += 6          # => len('</pre>')
     return preList
 
 

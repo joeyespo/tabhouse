@@ -26,18 +26,18 @@ from StringIO import StringIO
 # Song class
 class Song:
   """Class for Guitar Tab songs"""
-  def __init__ (self, Artist = "", Title = "", Album = "", Author = "", Url = "", Source = "", Errors = []):
-    self.Artist = Artist.title().replace(" Of ", " of ").replace(" A ", " a ").replace(" The ", " the ")
-    self.Title = Title.title().replace(" Of ", " of ").replace(" A ", " a ").replace(" The ", " the ")
-    self.Album = Album.title().replace(" Of ", " of ").replace(" A ", " a ").replace(" The ", " the ")
-    self.Author = Author.title()
-    self.Url = Url
-    self.Source = Source
-    self.Errors = Errors
+  def __init__ (self, artist = "", title = "", album = "", author = "", url = "", source = "", show_meta = True, show_url = True, errors = []):
+    self.Artist = artist.title().replace(" Of ", " of ").replace(" A ", " a ").replace(" The ", " the ")
+    self.Title = title.title().replace(" Of ", " of ").replace(" A ", " a ").replace(" The ", " the ")
+    self.Album = album.title().replace(" Of ", " of ").replace(" A ", " a ").replace(" The ", " the ")
+    self.Author = author.title()
+    self.Url = url
+    self.Source = source
+    self.Errors = errors
     self.Staffs = []
     self.StaffsPerScore = 0
-    self.ShowMeta = True
-    self.ShowUrl = True
+    self.ShowMeta = show_meta
+    self.ShowUrl = show_url
   
   def __str__ (self):
     head = ""
@@ -184,7 +184,7 @@ class Chord:
   NoteValues = property(getNoteValues)
 
 
-def CreateSong (text, url = ""):
+def CreateSong (text, url = "", show_meta = True, show_url = True):
   """Creates a guitar tab song from a text fragment"""
   errors = []
   artist, title, album, author = "", "", "", ""
@@ -235,7 +235,7 @@ def CreateSong (text, url = ""):
   fd.close()
   
   # Create guitar tab song
-  song = Song(artist, title, album, author, url, text)
+  song = Song(artist, title, album, author, url, text, show_meta = show_meta, show_url = show_url)
   # Create staffs
   for staff in staffs:
     s, e = CreateStaff(staff)
