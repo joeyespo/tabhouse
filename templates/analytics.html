@@ -3,3 +3,9 @@
 {{ config.get('ANALYTICS_SCRIPT')|safe }}
 </script>
 {% endif %}
+
+{% if config.get('FEEDBACK_SCRIPT') %}
+<script>
+{{ config.get('FEEDBACK_SCRIPT')|safe }}
+</script>
+{% endif %}
