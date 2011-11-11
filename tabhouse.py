@@ -42,13 +42,19 @@ def search():
 @app.errorhandler(404)
 def page_not_found(error=None):
     # TODO: Log broken link
-    print '\n404: %s\n  -> %s\n' % (request.url, request.referrer)
+    print
+    print '***ERROR*** 404:', request.url
+    print '  -> (referrer):', request.referrer
+    print
     return render_template('error404.html'), 404
 
 
 @app.errorhandler(500)
 def internal_error(error=None):
     # TODO: Log the error
+    print
+    print '***ERROR*** 500:', error
+    print
     return render_template('error500.html'), 500
 
 
