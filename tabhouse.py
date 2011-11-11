@@ -31,9 +31,11 @@ def search():
     show_source = bool(request.args.get('source'))
     if not q:
         return redirect(url_for('index'))
+    print
     print '>', q
+    raw_query = urlencode({'q': q + ' guitar tab'})
     song_url, song_text, song_source = search_song(q, depth, show_source)
-    return render_template('search.html', song_url=song_url, query=q.title(), song_text=song_text, song_source=song_source)
+    return render_template('search.html', song_url=song_url, query=q.title(), raw_query=raw_query, song_text=song_text, song_source=song_source)
 
 
 # Error handlers
