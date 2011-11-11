@@ -62,6 +62,7 @@ def search_song(q, result_count=4, show_source=False):
             song_text = str(song)
             song_source = song.Source if show_source or len(song_text.split('\n')) < 20 else ''
             return song_url, song_text, song_source
+    return '', '', ''
 
 
 def search_song_new(q, result_count=4, show_source=False):
@@ -93,7 +94,7 @@ def search_song_new(q, result_count=4, show_source=False):
     
     song = get_best_song(songs)
     if not song:
-        return None, '', ''
+        return '', '', ''
     if len(song.Errors) > 0:
         s = ''
         for error in song.Errors:
