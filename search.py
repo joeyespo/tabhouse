@@ -41,21 +41,27 @@ def search_song(q, result_count=4, show_source=False):
     if not urls:
         return None
     
+    print
+    print 'Checking for songs:'
+    
     songs = []
     for url in urls:
-        print 'Checking for song:', url
+        print '  - Checking for song:', url
         try:
             html = read_url(url)
         except Exception, ex:
-            print 'Error fetching %s: %s' % (url, ex)
+            print '  - Error fetching %s: %s' % (url, ex)
             continue
         texts = get_pre_text(html)
         for text in texts:
-            print '  -> Found song!'
             song = CreateSong(text, url)
             if song is not None and len(song.Staffs) > 0:
+                print '    Found song!'
                 song.ShowUrl = False
                 songs.append(song)
+    
+    print len(songs), 'song(s) found'
+    print
     
     song = get_best_song(songs)
     if not song:
