@@ -136,6 +136,15 @@ input {
     color: #c33;
 }
 
+header p a {
+    color: #333;
+    text-decoration: none;
+}
+header p a:hover {
+    color: #c33;
+    text-decoration: underline;
+}
+
 .main-search {
     margin-top: 2em;
 }
