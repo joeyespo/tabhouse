@@ -5,9 +5,10 @@ Defines functions for searching for guitar tabs using Google.
 """
 
 import json
-import urlparse
+from urlparse import urlparse
 from urllib import urlencode, urlopen
 from httplib import HTTPConnection
+from flask import current_app
 from guitar import CreateSong
 
 
@@ -21,7 +22,10 @@ def read_url(url):
 
 def re_search(url):
     data = json.loads(read_url(url))['responseData']
-    return [hit['url'] for hit in data['results']], data['cursor']['moreResultsUrl']
+    current_domain = current_app.config.get('DOMAIN', 'localhost')
+    any_other_domain = lambda url: not (current_domain in url and urlparse(url).netloc.endswith(current_domain))
+    urls = [hit['url'] for hit in data['results'] if any_other_domain(hit['url'])]
+    return urls, data['cursor']['moreResultsUrl']
 
 
 def web_search(q, result_count=4):
