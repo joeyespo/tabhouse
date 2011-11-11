@@ -5,6 +5,7 @@ Tabhouse
 A site to find quality guitar tabs.
 """
 
+from urllib import urlencode
 from flask import Flask, render_template, request, redirect, url_for
 from search import search_song
 
@@ -32,10 +33,9 @@ def search():
         return redirect(url_for('index'))
     result = search_song(q, depth, show_source)
     if not result:
-        # TODO: Show 'no results' page
-        return render_template('search.html', query=q.title(), url='', song_text='', song_source='')
+        return render_template('search.html', song_url=None, query=q.title(), raw_query=urlencode({'q': q}))
     song_url, song_text, song_source = result
-    return render_template('search.html', query=q.title(), song_url=song_url, song_text=song_text, song_source=song_source)
+    return render_template('search.html', song_url=song_url, query=q.title(), song_text=song_text, song_source=song_source)
 
 
 # Error handlers

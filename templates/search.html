@@ -18,12 +18,11 @@
             </div>
         </header>
         
+        {% if song_url %}
+        
         <section class="song">
             <h2>{{ query }}</h2>
-            
-            {% if song_url %}
             <p>Source: <a href="{{ song_url }}" target="_blank">{{ song_url }}</a></p>
-            {% endif %}
             
 <pre>
 {{ song_text }}
@@ -38,6 +37,17 @@
 {{ song_source }}
 </pre>
         </section>
+        {% endif %}
+        
+        {% else %}
+        
+        <section class="no-matches">
+            <h2>Sorry, no matches</h2>
+            
+            <p>We're working hard to improve your searches.</p>
+            <p>In the meantime, try a more <a href="http://www.google.com/search?{{ raw_query }}">traditional search</a>.</p>
+        </section>
+        
         {% endif %}
     
     </div>

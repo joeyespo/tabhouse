@@ -208,10 +208,10 @@ header p a:hover {
     width: 1000px;
 }
 
-.song {
+.song, .no-matches {
     margin: 3.5em 0;
 }
-.song h2 {
+.song h2, .no-matches h2 {
     color: black;
     font-size: 2.5em;
     font-family: Arial;
@@ -221,6 +221,14 @@ header p a:hover {
 .song p, .song pre {
     margin-top: 2em;
 }
+
+.no-matches h2 {
+    margin-bottom: 1em;
+}
+.no-matches p {
+    margin-top: 1em;
+}
+
 .song-source {
     color: #555;
     border-top: 1px dashed #ccc;
