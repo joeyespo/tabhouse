@@ -115,24 +115,24 @@ input {
 
 
 /* Main page */
-.content {
+.main-content {
     margin-top: 6em;
 }
-.content h1 {
+.main-content h1 {
     font-size: 3em;
     font-family: Arial;
     font-weight: bold;
     margin-top: 1em;
     margin-bottom: .4em;
 }
-.content h1 a {
+.main-content h1 a {
     color: black;
     font-weight: bold;
     text-decoration: none;
     -webkit-transition: color .25s linear;
     -moz-transition: color .25s linear;
 }
-.content h1 a:hover {
+.main-content h1 a:hover {
     color: #c33;
 }
 
