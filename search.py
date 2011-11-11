@@ -39,7 +39,7 @@ def web_search(q, result_count=4):
 def search_song(q, result_count=4, show_source=False):
     urls = web_search(q + ' guitar tab', result_count)
     if not urls:
-        return None
+        return '', '', ''
     
     print
     print 'Checking for songs:'

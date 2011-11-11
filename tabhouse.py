@@ -31,10 +31,8 @@ def search():
     show_source = bool(request.args.get('source'))
     if not q:
         return redirect(url_for('index'))
-    result = search_song(q, depth, show_source)
-    if not result:
-        return render_template('search.html', song_url=None, query=q.title(), raw_query=urlencode({'q': q}))
-    song_url, song_text, song_source = result
+    print '>', q
+    song_url, song_text, song_source = search_song(q, depth, show_source)
     return render_template('search.html', song_url=song_url, query=q.title(), song_text=song_text, song_source=song_source)
 
 
