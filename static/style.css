@@ -32,6 +32,7 @@ input {
 #wrap {
     margin: 0 auto 0 auto;
 }
+
 .page {
     background-color: white;
     color: #333;
@@ -91,6 +92,11 @@ input {
     color: black;
     font-weight: bold;
     text-decoration: none;
+    -webkit-transition: color .25s linear;
+    -moz-transition: color .25s linear;
+}
+.error-content h1 a:hover {
+    color: #c33;
 }
 
 .error-section {
@@ -192,7 +198,6 @@ header p a:hover {
 .results-content h1 a:hover {
     color: #c33;
 }
-
 .results-header h1 {
     width: 116px;
     margin-top: 1px;
@@ -227,7 +232,6 @@ header p a:hover {
 .song p, .song pre {
     margin-top: 2em;
 }
-
 .no-matches h2 {
     margin-bottom: 1em;
 }
