@@ -6,6 +6,7 @@ body {
     padding: 0;
     text-align: center;
     background-color: #fff;
+    margin: 0 auto 0 auto;
 }
 
 h1 {
@@ -28,11 +29,9 @@ input {
     padding: 2px;
 }
 
-#submit {
-    margin-left: 4px;
-    padding: 2px 8px;
+#wrap {
+    margin: 0 auto 0 auto;
 }
-
 .page {
     background-color: white;
     color: #333;
@@ -41,6 +40,13 @@ input {
 
 .clear {
     clear: both;
+}
+
+#submit {
+    margin-left: 4px;
+    padding: 2px 8px;
+    /* IE fix */
+    overflow: visible;
 }
 
 #footer {
