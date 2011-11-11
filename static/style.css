@@ -64,11 +64,11 @@ input {
 
 /* Sticky footer */
 #main {
-    padding-bottom: 56px;
+    padding-bottom: 58px;
 }
 #footer {
-    margin-top: -56px;
-    height: 56px;
+    margin-top: -58px;
+    height: 58px;
 }
 
 
