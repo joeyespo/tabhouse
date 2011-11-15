@@ -1,5 +1,7 @@
 @charset "utf-8";
 
+
+/* General styles */
 body {
     font: 12px/20px Arial, Georgia, serif;
     margin: 0;
@@ -67,6 +69,7 @@ input {
 .footer a:hover {
     color: #aaa;
 }
+
 
 
 /* Sticky footer */
@@ -252,4 +255,26 @@ header p a:hover {
 }
 .song-source pre {
     margin-top: 2em;
+}
+
+
+@media print {
+    body {
+        background-color: white;
+    }
+    
+    a, a:visited {
+        color: #520;
+        background: transparent;
+        font-weight: bold;
+        text-decoration: none;
+    }
+    
+    #footer, .results-header, .song span, .song-actions {
+        display: none;
+    }
+    
+    .song {
+        margin-top: 0;
+    }
 }
