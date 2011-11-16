@@ -257,7 +257,6 @@ header p a:hover {
     margin-top: 2em;
 }
 
-
 @media print {
     body {
         background-color: white;
