@@ -8,12 +8,14 @@ A site to find quality guitar tabs.
 from urllib import urlencode
 from flask import Flask, render_template, request, redirect, url_for
 from search import search_song
+from helper import static_for
 
 __version__ = '0.1'
 
 
 # Flask application
 app = Flask(__name__, instance_relative_config=True)
+app.jinja_env.globals.update(static_for=static_for)
 app.config.from_object('default_config')
 app.config.from_pyfile('local_config.py', silent=True)
 
