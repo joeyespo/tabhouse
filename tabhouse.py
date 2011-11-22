@@ -39,7 +39,7 @@ def search_json():
     q = request.args.get('q', '')
     depth = int(request.args.get('depth', 10))
     show_source = bool(request.args.get('source'))
-    print ' >', q
+    print; print ' >', q
     song_url, song_text, song_source = search_song(q, depth, show_source)
     if not song_url:
         print ' - No song found'
