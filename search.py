@@ -22,6 +22,8 @@ def read_url(url):
 
 def re_search(url):
     data = json.loads(read_url(url))['responseData']
+    if not data:
+        return [], ''
     current_domain = current_app.config.get('DOMAIN', 'localhost')
     any_other_domain = lambda url: not (current_domain in url and urlparse(url).netloc.endswith(current_domain))
     urls = [hit['url'] for hit in data['results'] if any_other_domain(hit['url'])]
