@@ -165,7 +165,6 @@ header p a:hover {
 }
 .main-search h2 {
     display: none;
-    visibility: hidden;
 }
 
 .main-search-form {
@@ -222,38 +221,49 @@ header p a:hover {
     width: 1000px;
 }
 
-.song, .no-matches {
+#searching {
+    margin-top: 4em;
+}
+#searching img {
+    margin: 0 4px;
+    position: relative;
+    top: 3px;
+}
+#search-error, #no-matches, #song-text-result, #song-source-result {
+    display: none;
+}
+#search-error, #no-matches, #song-text-result {
     margin: 3.5em 0;
 }
-.song h2, .no-matches h2 {
+#search-error h2, #no-matches h2, #song-text-result h2 {
     color: black;
     font-size: 2.5em;
     font-family: Arial;
     font-weight: bold;
     margin-top: 1em
 }
-.song p, .song pre {
+#song-text-result p, #song-text-result pre {
     margin-top: 2em;
 }
-.no-matches h2 {
+#search-error h2, #no-matches h2 {
     margin-bottom: 1em;
 }
-.no-matches p {
+#search-error p, #no-matches p {
     margin-top: 1em;
 }
 
-.song-source {
+#song-source-result {
     color: #555;
     border-top: 1px dashed #ccc;
     background-color: #f8f8f8;
     text-shadow: #fff 1px 1px 0px;
     padding-bottom: 3em;
 }
-.song-source h2 {
+#song-source-result h2 {
     margin-top: .5em;
     font-size: 2em;
 }
-.song-source pre {
+#song-source-result pre {
     margin-top: 2em;
 }
 
@@ -269,11 +279,11 @@ header p a:hover {
         text-decoration: none;
     }
     
-    #footer, .results-header, .song span, .song-actions {
+    #footer, .results-header, #song-text-result span, .song-actions {
         display: none;
     }
     
-    .song {
+    #song-text-result {
         margin-top: 0;
     }
 }

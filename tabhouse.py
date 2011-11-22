@@ -6,7 +6,7 @@ A site to find quality guitar tabs.
 """
 
 from urllib import urlencode
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, jsonify
 from search import search_song
 from helper import static_for
 
@@ -31,13 +31,19 @@ def search():
     q = request.args.get('q')
     depth = int(request.args.get('depth', 10))
     show_source = bool(request.args.get('source'))
-    if not q:
-        return redirect(url_for('index'))
-    print
-    print '>', q
-    raw_query = urlencode({'q': q + ' guitar tab'})
+    return render_template('search.html', query=q.title(), raw_query=q, encoded_query=urlencode({'q': q + ' guitar tab'})) if q else redirect(url_for('index'))
+
+
+@app.route('/search.json')
+def search_json():
+    q = request.args.get('q', '')
+    depth = int(request.args.get('depth', 10))
+    show_source = bool(request.args.get('source'))
+    print ' >', q
     song_url, song_text, song_source = search_song(q, depth, show_source)
-    return render_template('search.html', song_url=song_url, query=q.title(), raw_query=raw_query, song_text=song_text, song_source=song_source)
+    if not song_url:
+        print ' - No song found'
+    return jsonify(song_url=song_url, song_text=song_text, song_source=song_source)
 
 
 # Error handlers

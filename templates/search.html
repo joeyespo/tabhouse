@@ -2,6 +2,34 @@
 
 {% block title %}{{ query }}{% endblock %}
 
+{% block additional_scripts %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<script>
+    $.getJSON("/search.json",
+        {
+            q: "{{ raw_query }}",
+        }).success(function(data) {
+            $('#searching').hide();
+            
+            if(data.song_url) {
+                $('#song-url').attr('href', data.song_url).text(data.song_url);
+                $('#song-text').html(data.song_text.replace('\\n', '\n'));
+                $('#song-text-result').show();
+                if (data.song_source) {
+                    $('#song-source').html(data.song_source);
+                    $('#song-source-result').show();
+                }
+            }
+            else {
+                $('#no-matches').show();
+            }
+        }).error(function() {
+            $('#searching').hide();
+            $('#search-error').show();
+        });
+</script>
+{% endblock %}
+
 {% block content %}
 <article>
     <div class="results-content">
@@ -18,38 +46,36 @@
             </div>
         </header>
         
-        {% if not song_url %}
-        
-        <section class="no-matches">
-            <h2>Sorry, no matches</h2>
+        <section>
+            <div id="searching">
+                <p>Processing tabs <img src="{{ static_for('spinner.gif') }}" alt="Please wait..." width="16" height="16" /></p>
+            </div>
             
-            <p>We're working hard to improve your searches.</p>
-            <p>In the meantime, try a more <a href="http://www.google.com/search?{{ raw_query }}">traditional search</a>.</p>
-        </section>
-        
-        {% else %}
-        
-        <section class="song">
-            <h2>{{ query }}</h2>
-            <p><span>Source: </span><a href="{{ song_url }}">{{ song_url }}</a></p>
+            <div id="search-error">
+                <h2>Error</h2>
+                <p>Something went wrong! Don't worry, the error was logged so we'll look into this shortly.</p>
+                <p>In the meantime, try a more <a href="http://www.google.com/search?{{ encoded_query }}">traditional search</a>.</p>
+            </div>
             
-<pre>
-{{ song_text }}
+            <div id="no-matches">
+                <h2>Sorry, no matches</h2>
+                <p>We're working hard to improve your searches.</p>
+                <p>In the meantime, try a more <a href="http://www.google.com/search?{{ encoded_query }}">traditional search</a>.</p>
+            </div>
+            
+            <div id="song-text-result">
+                <h2>{{ query }}</h2>
+                <p><span>Source: </span><a id="song-url" href="#"></a></p>
+<pre id="song-text">
 </pre>
-        </section>
-        
-        {% if song_source %}
-        <section class="song-source">
-            <h2>Source</h2>
+            </div>
             
-<pre>
-{{ song_source }}
+            <div id="song-source-result">
+                <h2>Source</h2>
+<pre id="song-source">
 </pre>
+            </div>
         </section>
-        {% endif %}
-        
-        {% endif %}
-    
     </div>
 </article>
 {% endblock %}
