@@ -48,11 +48,11 @@ def search_song(q, result_count=4, show_source=False):
     for url in urls:
         print '  - Checking:', url
         try:
-            html = read_url(url)
+            content = read_url(url)
         except Exception, ex:
             print '  - Error fetching %s: %s' % (url, ex)
             continue
-        for text in get_pre_text(html):
+        for text in get_pre_text(content):
             song = CreateSong(text, url, show_url=False)
             if not song or not song.Staffs:
                 continue
@@ -79,11 +79,11 @@ def search_song_new(q, result_count=4, show_source=False):
     for url in urls:
         print '  - Checking:', url
         try:
-            html = read_url(url)
+            content = read_url(url)
         except Exception, ex:
             print '  - Error fetching %s: %s' % (url, ex)
             continue
-        texts = get_pre_text(html)
+        texts = get_pre_text(content)
         for text in texts:
             song = CreateSong(text, url)
             if song is not None and len(song.Staffs) > 0:
