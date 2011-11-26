@@ -7,7 +7,6 @@ Defines functions for searching for guitar tabs using Google.
 import json
 from urlparse import urlparse
 from urllib import urlencode, urlopen
-from httplib import HTTPConnection
 from flask import current_app
 from guitar import CreateSong
 
@@ -47,7 +46,6 @@ def search_song(q, result_count=4, show_source=False):
     urls = web_search(q + ' guitar tab', result_count)
     if not urls:
         return '', '', ''
-    
     print
     print 'Checking for song:'
     for url in urls:
@@ -55,6 +53,7 @@ def search_song(q, result_count=4, show_source=False):
         try:
             content = read_url_unicode(url)
         except Exception, ex:
+            # TODO: Log errors
             print '***ERROR*** fetching %s: %s' % (url, ex)
             continue
         for text in get_pre_text(content):
@@ -70,49 +69,6 @@ def search_song(q, result_count=4, show_source=False):
             song_source = song.Source if show_source or len(song_text.split('\n')) < 20 else ''
             return song_url, song_text, song_source
     return '', '', ''
-
-
-def search_song_new(q, result_count=4, show_source=False):
-    urls = web_search(q + ' guitar tab', result_count)
-    if not urls:
-        return '', '', ''
-    
-    print
-    print 'Checking for songs:'
-    
-    songs = []
-    for url in urls:
-        print '  - Checking:', url
-        try:
-            content = read_url(url)
-        except Exception, ex:
-            print '  - Error fetching %s: %s' % (url, ex)
-            continue
-        texts = get_pre_text(content)
-        for text in texts:
-            song = CreateSong(text, url)
-            if song is not None and len(song.Staffs) > 0:
-                print '    Found song!'
-                song.ShowUrl = False
-                songs.append(song)
-    
-    print len(songs), 'song(s) found'
-    print
-    
-    song = get_best_song(songs)
-    if not song:
-        return '', '', ''
-    if len(song.Errors) > 0:
-        s = ''
-        for error in song.Errors:
-            s += 'Error while parsing song: %s\n' % error
-        print s
-        return s
-    
-    song_url = song.Url
-    song_text = str(song)
-    song_source = song.Source if show_source or len(song_text.split('\n')) < 20 else ''
-    return song_url, song_text, song_source
 
 
 # TODO: Clean this up
