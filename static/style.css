@@ -140,6 +140,10 @@ input {
     margin-top: 1em;
     margin-bottom: .4em;
 }
+.main-content img {
+    margin: -60px -100px -8px 0;
+    padding: 0px 51px 0 0;
+}
 .main-content h1 a {
     color: black;
     font-weight: bold;
@@ -277,6 +281,10 @@ header p a:hover {
         background: transparent;
         font-weight: bold;
         text-decoration: none;
+    }
+    
+    .main-content img {
+        display: none;
     }
     
     #footer, .results-header, #song-text-result span, .song-actions {
