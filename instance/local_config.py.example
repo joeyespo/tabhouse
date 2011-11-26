@@ -12,3 +12,12 @@ DOMAIN = 'example.com'  # Add your website domain when uploaded to production; o
 
 ANALYTICS_SCRIPT = ''   # Put your analytics JavaScript code here
 FEEDBACK_BLOCK = ''     # The HTML block for feedback styles and scripts
+
+ERROR_EMAIL_INFO = None # Fill out the following tuple to report errors over SMTP
+                        # (mailhost, from_address, to_addresses, subject, credentials)
+                        #   where
+                        #       mailhost is the domain name, or (host, port) to also specify a port
+                        #       from_address    -- the email address to send from
+                        #       to_addresses    -- the list of addresses to send error messages to
+                        #       subject         -- the subject of the error message
+                        #       credentials     -- has form (username, password) if the host requires it, or None
