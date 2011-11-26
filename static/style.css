@@ -145,6 +145,7 @@ input {
     padding: 0px 51px 0 0;
 }
 .main-content h1 a {
+    margin-right: 60px;
     color: black;
     font-weight: bold;
     text-decoration: none;
@@ -285,6 +286,9 @@ header p a:hover {
     
     .main-content img {
         display: none;
+    }
+    .main-content h1 a {
+        margin-right: 0;
     }
     
     #footer, .results-header, #song-text-result span, .song-actions {
