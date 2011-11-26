@@ -8,7 +8,7 @@ A site to find quality guitar tabs.
 from urllib import urlencode
 from flask import Flask, request, render_template, redirect, url_for, jsonify
 from search import search_song
-from helper import static_for
+from helper import static_for, email_errors
 
 __version__ = '0.1'
 
@@ -18,6 +18,8 @@ app = Flask(__name__, instance_relative_config=True)
 app.jinja_env.globals.update(static_for=static_for)
 app.config.from_object('default_config')
 app.config.from_pyfile('local_config.py', silent=True)
+# TODO: log_errors(app, app.config.get('ERROR_LOG_PATH'))
+email_errors(app, app.config.get('ERROR_EMAIL_INFO'))
 
 
 # Views
