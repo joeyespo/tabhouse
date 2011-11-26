@@ -12,16 +12,21 @@ from flask import current_app
 from guitar import CreateSong
 
 
-def read_url(url):
+def read_url_unicode(url):
     response = urlopen(url)
+    content_type = response.headers.get('content-type', '')
     try:
-        return response.read()
+        content = response.read()
     finally:
         response.close()
+    index = content_type.find('charset=')
+    encoding = content_type[index + 8:] if index >= 0 else None
+    content = unicode(content, encoding, errors='replace') if encoding else unicode(content, errors='replace')
+    return content
 
 
 def re_search(url):
-    data = json.loads(read_url(url))['responseData']
+    data = json.loads(read_url_unicode(url))[u'responseData']
     if not data:
         return [], ''
     current_domain = current_app.config.get('DOMAIN', 'localhost')
@@ -48,9 +53,9 @@ def search_song(q, result_count=4, show_source=False):
     for url in urls:
         print '  - Checking:', url
         try:
-            content = read_url(url)
+            content = read_url_unicode(url)
         except Exception, ex:
-            print '  - Error fetching %s: %s' % (url, ex)
+            print '***ERROR*** fetching %s: %s' % (url, ex)
             continue
         for text in get_pre_text(content):
             song = CreateSong(text, url, show_url=False)
