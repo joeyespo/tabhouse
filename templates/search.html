@@ -5,7 +5,8 @@
 {% block additional_scripts %}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 <script>
-    $.getJSON("/search.json",
+    $(function() {
+        $.getJSON("/search.json",
         {
             q: "{{ raw_query }}",
         }).success(function(data) {
@@ -13,10 +14,10 @@
             
             if(data.song_url) {
                 $('#song-url').attr('href', data.song_url).text(data.song_url);
-                $('#song-text').html(data.song_text.replace('\\n', '\n'));
+                $('#song-text').text(data.song_text);
                 $('#song-text-result').show();
                 if (data.song_source) {
-                    $('#song-source').html(data.song_source);
+                    $('#song-source').text(data.song_source);
                     $('#song-source-result').show();
                 }
             }
@@ -27,6 +28,7 @@
             $('#searching').hide();
             $('#search-error').show();
         });
+    });
 </script>
 {% endblock %}
 
