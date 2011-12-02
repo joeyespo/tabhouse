@@ -6,12 +6,10 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 <script>
     $(function() {
-        $.getJSON("/search.json",
-        {
-            q: "{{ raw_query }}",
+        $.getJSON("/search.json", {
+            q: "{{ raw_query }}"{{ ', depth: %d' % depth if depth }}{{ ', source: %s' % source|lower if source }}
         }).success(function(data) {
             $('#searching').hide();
-            
             if(data.song_url) {
                 $('#song-url').attr('href', data.song_url).text(data.song_url);
                 $('#song-text').text(data.song_text);
