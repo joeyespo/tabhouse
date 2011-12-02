@@ -10,6 +10,16 @@ from logging.handlers import SMTPHandler
 from flask import url_for, current_app
 
 
+def try_parse_int(s, default_value=None):
+    """Parse an integer or return a default value if it cannot be done."""
+    try:
+        return int(s)
+    except ValueError:
+        return default_value
+    except TypeError:
+        return default_value
+
+
 def static_for(filename, endpoint='.static'):
     """Provides the 'static' function that also appends the file's timestamp to the URL, usable in a template."""
     return url_for(endpoint, filename=filename) + '?' + str(int(os.path.getmtime(os.path.join(current_app.static_folder, filename))))
