@@ -39,7 +39,7 @@ def web_search(q, result_count=4):
     # TODO: Use direct page parsing (from client?) and fall back to the API version
     urls, next_url = re_search('http://ajax.googleapis.com/ajax/services/search/web?v=1.0&%s' % urlencode({'q': q}))
     # TODO: Get all results, up to result_count
-    return urls
+    return urls[:result_count]
 
 
 def search_song(q, result_count=4, show_source=False):
