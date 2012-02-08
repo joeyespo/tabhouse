@@ -2,7 +2,7 @@
 build/
 instance/
 logs/
-meta/
+research/
 *.egg-info
 *epio*
 
