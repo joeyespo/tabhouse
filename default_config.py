@@ -1,5 +1,9 @@
-# Default Config
-# Override these values in the instance/local_config.py file, not this one.
+"""\
+Default Config
+
+Override these values in the instance/local_config.py file, not this one.
+"""
+
 
 DEBUG = None
 
