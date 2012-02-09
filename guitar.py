@@ -3,6 +3,9 @@ Guitar
 By Joe Esposito
 
 Contains classes for storing and manipulating guitar tabs in a structured manor.
+
+DISCLAIMER: this is very old, but functional code.
+It may or may not reflect PEP8 ;) Cleanup pending.
 """
 
 from StringIO import StringIO
