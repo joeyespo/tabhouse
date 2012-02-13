@@ -20,6 +20,12 @@ def try_parse_int(s, default_value=None):
         return default_value
 
 
+def add_jinja_helpers(app):
+    """Adds helper globals to jinja."""
+    # Static file helpers
+    app.jinja_env.globals.update(static_for=static_for)
+
+
 def static_for(filename, endpoint='.static'):
     """Provides the 'static' function that also appends the file's timestamp to the URL, usable in a template."""
     return url_for(endpoint, filename=filename) + '?' + str(int(os.path.getmtime(os.path.join(current_app.static_folder, filename))))
