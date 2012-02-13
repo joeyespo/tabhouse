@@ -1,0 +1,17 @@
+"""\
+Development Config
+
+This will be used when running Flask's local development server with app.run().
+You can use this implicitly with app.run or by setting SETTINGS_MODULE to this.
+
+See 'default_config.py' for a complete list of overridable settings.
+"""
+
+
+# Development settings
+DEBUG = True            # Or None to use debug mode when started with app.run()
+HOST = 'localhost'      # Or '0.0.0.0' to allow connections from other machines
+PORT = 5000             # Or 80 to behave like a standard server with the above
+
+# Security settings
+SECRET_KEY = 'development key'

@@ -1,0 +1,29 @@
+"""\
+Server-Specific Config
+
+The recommended usage of this file is to rename it to <servername>_config.py.
+This can be loaded by setting the SETTINGS_MODULE environment variable to here.
+
+See 'default_config.py' for a complete list of overridable settings.
+"""
+
+
+# Server settings
+SERVER_NAME = None      # Set to server name and port for subdomain support
+
+# Security settings
+SECRET_KEY = None       # Generate a key and put it here for secure cookies
+
+# Logging settings
+ERROR_EMAIL_INFO = None # Set to the following tuple to report errors over SMTP
+                        # (host, from_address, to_addresses, subj, credentials)
+                        #   where
+                        #       host            -- domain name or (name, port)
+                        #       from_address    -- email address to send from
+                        #       to_addresses    -- send error messages to these
+                        #       subj            -- subject of the error message
+                        #       credentials     -- (username, pass) if required
+
+# User feedback settings
+ANALYTICS_SCRIPT = None # The JavaScript code, not HTML, for your analytics
+FEEDBACK_BLOCK = None   # The HTML block for feedback styles and scripts

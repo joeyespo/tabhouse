@@ -18,7 +18,9 @@ app = Flask(__name__, instance_relative_config=True)
 app.jinja_env.globals.update(static_for=static_for)
 app.config.from_object('default_config')
 app.config.from_pyfile('local_config.py', silent=True)
-# TODO: log_errors(app, app.config.get('ERROR_LOG_PATH'))
+app.config.from_envvar('SETTINGS_MODULE', silent=True)
+if __name__ == '__main__':
+    app.config.from_pyfile('dev_config.py', silent=True)
 email_errors(app, app.config.get('ERROR_EMAIL_INFO'))
 
 
