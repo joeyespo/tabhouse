@@ -25,8 +25,10 @@ def static_for(filename, endpoint='.static'):
     return url_for(endpoint, filename=filename) + '?' + str(int(os.path.getmtime(os.path.join(current_app.static_folder, filename))))
 
 
-def email_errors(app, email_info, error_level=logging.ERROR):
+def email_errors(app, email_info=None, error_level=logging.ERROR):
     """Enables error reporting using SMTP for the provided app."""
+    if not email_info:
+        email_info = app.config.get('ERROR_EMAIL_INFO')
     if not email_info:
         return
     mailhost, from_address, to_addresses, subject, credentials = email_info

@@ -21,7 +21,7 @@ app.config.from_pyfile('local_config.py', silent=True)
 app.config.from_envvar('SETTINGS_MODULE', silent=True)
 if __name__ == '__main__':
     app.config.from_pyfile('dev_config.py', silent=True)
-email_errors(app, app.config.get('ERROR_EMAIL_INFO'))
+email_errors(app)
 
 
 # Views
