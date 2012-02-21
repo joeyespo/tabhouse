@@ -2,12 +2,10 @@
 build/
 instance/
 logs/
-research/
+
+*.pyc
 *.egg-info
 *epio*
-
-# Python bytecode files
-*.pyc
 
 # Misc and OS files
 Desktop.ini         # Windows directory atttributes
