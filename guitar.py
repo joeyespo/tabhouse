@@ -30,9 +30,7 @@ class Song(object):
         fd = StringIO(s)
         try:
             staffstrings = []
-            while True:
-                line = fd.readline()
-                if line == '': break
+            for line in fd:
                 line = line.strip()
                 if line == '': continue
                 # Find song tabs
@@ -77,9 +75,7 @@ class SongInfo(object):
         song_info = SongInfo()
         fd = StringIO(s)
         try:
-            while True:
-                line = fd.readline()
-                if line == '': break
+            for line in fd:
                 line = line.strip()
                 if line == '': continue
                 # Parse song info
