@@ -45,10 +45,12 @@ def search_json():
     q = request.args.get('q', '')
     depth = try_parse_int(request.args.get('depth'))
     show_source = bool(request.args.get('source'))
-    print; print ' >', q
+    print
+    print '  >', q
     song_url, song_text, song_source = search_song(q, depth, show_source)
     if not song_url:
-        print ' - No song found'
+        print '  - No song found'
+    print
     return jsonify(song_url=song_url, song_text=song_text, song_source=song_source)
 
 

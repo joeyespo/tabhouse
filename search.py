@@ -8,7 +8,7 @@ import json
 from urlparse import urlparse
 from urllib import urlencode, urlopen
 from flask import current_app
-from guitar import CreateSong
+from guitar import Song
 
 
 def read_url_unicode(url):
@@ -25,13 +25,18 @@ def read_url_unicode(url):
 
 
 def re_search(url):
-    data = json.loads(read_url_unicode(url))[u'responseData']
-    if not data:
+    data = json.loads(read_url_unicode(url))
+    responseData = data[u'responseData']
+    if not responseData:
+        responseStatus, responseDetails = data[u'responseStatus'], data[u'responseDetails']
+        if responseStatus:
+            # TODO: Log errors
+            print '  *** Error: search responded with %s: %s' % (responseStatus, responseDetails)
         return [], ''
     current_domain = current_app.config.get('DOMAIN', 'localhost')
     any_other_domain = lambda url: not (current_domain in url and urlparse(url).netloc.endswith(current_domain))
-    urls = [hit['url'] for hit in data['results'] if any_other_domain(hit['url'])]
-    return urls, data['cursor']['moreResultsUrl']
+    urls = [hit['url'] for hit in responseData['results'] if any_other_domain(hit['url'])]
+    return urls, responseData['cursor']['moreResultsUrl']
 
 
 def web_search(q, result_count=4):
@@ -43,10 +48,10 @@ def web_search(q, result_count=4):
 
 
 def search_song(q, result_count=4, show_source=False):
+    print
     urls = web_search(q + ' guitar tab', result_count)
     if not urls:
         return '', '', ''
-    print
     print 'Checking for song:'
     for url in urls:
         print '  - Checking:', url
@@ -54,20 +59,19 @@ def search_song(q, result_count=4, show_source=False):
             content = read_url_unicode(url)
         except Exception, ex:
             # TODO: Log errors
-            print '***ERROR*** fetching %s: %s' % (url, ex)
+            print '  *** Error fetching %s: %s' % (url, ex)
             continue
         for text in get_pre_text(content):
-            song = CreateSong(text, url, show_url=False)
-            if not song or not song.Staffs:
+            song, errors = Song.parse(text)
+            if not song.staffs:
                 continue
             print '    Found song!'
             # TODO: Log errors
-            if len(song.Errors) > 0:
-                print '\n'.join([' *** Error while parsing song: ' + message for message in song.Errors])
-            song_url = song.Url
+            if len(errors) > 0:
+                print '\n'.join(['  *** Error while parsing song: ' + message for message in errors])
             song_text = str(song)
-            song_source = song.Source if show_source or len(song_text.split('\n')) < 20 else ''
-            return song_url, song_text, song_source
+            song_source = text if show_source or len(song_text.split('\n')) < 20 else ''
+            return url, song_text, song_source
     return '', '', ''
 
 
