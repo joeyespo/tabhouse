@@ -11,9 +11,9 @@ from flask import url_for, current_app
 
 
 def try_parse_int(s, default_value=None):
-    """Parse an integer or return a default value if it cannot be done."""
+    """Parse an integer or return a default value if it cannot be done or the string is None."""
     try:
-        return int(s)
+        return int(s) if s is not None else default_value
     except ValueError:
         return default_value
 
