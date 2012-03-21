@@ -16,8 +16,6 @@ def try_parse_int(s, default_value=None):
         return int(s)
     except ValueError:
         return default_value
-    except TypeError:
-        return default_value
 
 
 def add_jinja_helpers(app):
