@@ -5,6 +5,7 @@ Defines functions for searching for guitar tabs using Google.
 """
 
 import json
+from logging import info
 from urlparse import urlparse
 from urllib import urlencode, urlopen
 from flask import current_app
@@ -31,7 +32,7 @@ def re_search(url):
         responseStatus, responseDetails = data[u'responseStatus'], data[u'responseDetails']
         if responseStatus:
             # TODO: Log errors
-            print '  *** Error: search responded with %s: %s' % (responseStatus, responseDetails)
+            info('  *** Error: search responded with %s: %s', responseStatus, responseDetails)
         return [], ''
     current_domain = current_app.config.get('DOMAIN', 'localhost')
     any_other_domain = lambda url: not (current_domain in url and urlparse(url).netloc.endswith(current_domain))
@@ -48,27 +49,27 @@ def web_search(q, result_count=4):
 
 
 def search_song(q, result_count=4, show_source=False):
-    print
+    info('')
     urls = web_search(q + ' guitar tab', result_count)
     if not urls:
         return '', '', ''
-    print 'Checking for song:'
+    info('Checking for song:')
     for url in urls:
-        print '  - Checking:', url
+        info('  - Checking: %s', url)
         try:
             content = read_url_unicode(url)
         except Exception, ex:
             # TODO: Log errors
-            print '  *** Error fetching %s: %s' % (url, ex)
+            info('  *** Error fetching %s: %s', url, ex)
             continue
         for text in get_pre_text(content):
             song, errors = Song.parse(text)
             if not song.staffs:
                 continue
-            print '    Found song!'
+            info('    Found song!')
             # TODO: Log errors
             if len(errors) > 0:
-                print '\n'.join(['  *** Error while parsing song: ' + message for message in errors])
+                info('\n'.join(['  *** Error while parsing song: ' + message for message in errors]))
             song_text = str(song)
             song_source = text if show_source or len(song_text.split('\n')) < 20 else ''
             return url, song_text, song_source

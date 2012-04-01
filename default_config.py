@@ -11,8 +11,12 @@ DEBUG = None
 HOST = 'localhost'
 PORT = 5000
 
-# Server settings
-SERVER_NAME = None
+# Logging defaults
+LOGGING = {
+    'version': 1,
+    'handlers': { 'console': { 'level': 'DEBUG', 'class': 'logging.StreamHandler', } },
+    'loggers': { None: { 'handlers': ['console'], 'level': 'DEBUG', } }
+}
 
 # Security settings
 SECRET_KEY = None

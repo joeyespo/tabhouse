@@ -5,6 +5,8 @@ Tabhouse
 A site to find quality guitar tabs.
 """
 
+from logging import error, info
+from logging.config import dictConfig
 from urllib import urlencode
 from flask import Flask, request, render_template, redirect, url_for, jsonify
 from search import search_song
@@ -21,6 +23,8 @@ app.config.from_envvar('SETTINGS_MODULE', silent=True)
 if __name__ == '__main__':
     app.config.from_pyfile('dev_config.py', silent=True)
 add_jinja_helpers(app)
+if 'LOGGING' in app.config:
+    dictConfig(app.config['LOGGING'])
 email_errors(app)
 
 
@@ -45,32 +49,24 @@ def search_json():
     q = request.args.get('q', '')
     depth = try_parse_int(request.args.get('depth'))
     show_source = bool(request.args.get('source'))
-    print
-    print '  >', q
+    info('  > %s', q)
     song_url, song_text, song_source = search_song(q, depth, show_source)
     if not song_url:
-        print '  - No song found'
-    print
+        info('  - No song found for: %s', q)
+    info('')
     return jsonify(song_url=song_url, song_text=song_text, song_source=song_source)
 
 
 # Error handlers
 @app.errorhandler(404)
 def page_not_found(error=None):
-    # TODO: Log broken link
-    print
-    print '***ERROR*** 404:', request.url
-    print '  -> (referrer):', request.referrer
-    print
+    error('\n***ERROR*** 404: %s\n  -> (referrer): %s\n', request.url, request.referrer)
     return render_template('error404.html'), 404
 
 
 @app.errorhandler(500)
 def internal_error(error=None):
-    # TODO: Log the error
-    print
-    print '***ERROR*** 500:', error
-    print
+    error('\n***ERROR*** 500: %s\n  -> (referrer): %s\n', error, request.referrer)
     return render_template('error500.html'), 500
 
 
