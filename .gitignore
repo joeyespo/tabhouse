@@ -3,9 +3,11 @@ build/
 instance/
 logs/
 
+.env
+procfile
+
 *.pyc
 *.egg-info
-*epio*
 
 # Misc and OS files
 Desktop.ini         # Windows directory atttributes
