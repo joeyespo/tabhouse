@@ -59,14 +59,14 @@ def search_json():
 
 # Error handlers
 @app.errorhandler(404)
-def page_not_found(error=None):
+def page_not_found(exception=None):
     error('\n***ERROR*** 404: %s\n  -> (referrer): %s\n', request.url, request.referrer)
     return render_template('error404.html'), 404
 
 
 @app.errorhandler(500)
-def internal_error(error=None):
-    error('\n***ERROR*** 500: %s\n  -> (referrer): %s\n', error, request.referrer)
+def internal_error(exception=None):
+    error('\n***ERROR*** 500: %s: %s\n  -> (referrer): %s\n', type(exception).__name__, exception, request.referrer)
     return render_template('error500.html'), 500
 
 
