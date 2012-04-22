@@ -22,7 +22,7 @@ LOGGING = {
 SECRET_KEY = None
 
 # Logging settings
-ERROR_EMAIL_INFO = None
+ERROR_EMAIL_INFO = None     # Format: ((HOST, PORT), FROM_ADDRESS, (TO_ADDRESS, ...), SUBJECT, (EMAIL_USER, EMAIL_PASS))
 
 # User feedback settings
 ANALYTICS_SCRIPT = None
