@@ -5,10 +5,12 @@ Tabhouse
 A site to find quality guitar tabs.
 """
 
+from datetime import datetime
 from logging import error, info
 from logging.config import dictConfig
 from urllib import urlencode
-from flask import Flask, request, render_template, redirect, url_for, jsonify
+from flask import (Flask, g, request, render_template, redirect, url_for,
+    jsonify)
 from raven.contrib.flask import Sentry
 from search import search_song
 from helper import try_parse_int, add_jinja_helpers, email_errors
@@ -28,6 +30,12 @@ add_jinja_helpers(app)
 if 'LOGGING' in app.config:
     dictConfig(app.config['LOGGING'])
 email_errors(app)
+
+
+# Request handlers
+@app.before_request
+def set_date():
+    g.now = datetime.utcnow()
 
 
 # Views
