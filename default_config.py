@@ -23,6 +23,9 @@ LOGGING = {
 # Security settings
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
+# 3rd party settings
+SENTRY_DSN = os.environ.get('SENTRY_DSN')
+
 # Logging settings
 ERROR_EMAIL_INFO = None     # Format: ((HOST, PORT), FROM_ADDRESS, (TO_ADDRESS, ...), SUBJECT, (EMAIL_USER, EMAIL_PASS))
 

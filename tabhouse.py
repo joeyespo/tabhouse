@@ -9,6 +9,7 @@ from logging import error, info
 from logging.config import dictConfig
 from urllib import urlencode
 from flask import Flask, request, render_template, redirect, url_for, jsonify
+from raven.contrib.flask import Sentry
 from search import search_song
 from helper import try_parse_int, add_jinja_helpers, email_errors
 
@@ -22,6 +23,7 @@ app.config.from_pyfile('local_config.py', silent=True)
 app.config.from_envvar('SETTINGS_MODULE', silent=True)
 if __name__ == '__main__':
     app.config.from_pyfile('dev_config.py', silent=True)
+sentry = Sentry(app)
 add_jinja_helpers(app)
 if 'LOGGING' in app.config:
     dictConfig(app.config['LOGGING'])
