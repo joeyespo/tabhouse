@@ -45,31 +45,31 @@
                 <div class="clear"></div>
             </div>
         </header>
-        
+
         <section>
             <div id="searching">
                 <p>Processing tabs <img src="{{ static_for('spinner.gif') }}" alt="Please wait..." width="16" height="16" /></p>
             </div>
-            
+
             <div id="search-error">
                 <h2>Error</h2>
                 <p>Something went wrong! Don't worry, the error was logged so we'll look into this shortly.</p>
                 <p>In the meantime, try a more <a href="http://www.google.com/search?{{ encoded_query }}">traditional search</a>.</p>
             </div>
-            
+
             <div id="no-matches">
                 <h2>Sorry, no matches</h2>
                 <p>We're working hard to improve your searches.</p>
                 <p>In the meantime, try a more <a href="http://www.google.com/search?{{ encoded_query }}">traditional search</a>.</p>
             </div>
-            
+
             <div id="song-text-result">
                 <h2>{{ query }}</h2>
                 <p><span>Source: </span><a id="song-url" href="#"></a></p>
 <pre id="song-text">
 </pre>
             </div>
-            
+
             <div id="song-source-result">
                 <h2>Source</h2>
 <pre id="song-source">
