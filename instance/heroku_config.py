@@ -1,10 +1,10 @@
 """\
-Epio Config
+Heroku Production Config
 
 The recommended usage of this file is to rename it to <servername>_config.py.
 This can be loaded by setting the SETTINGS_MODULE environment variable to here.
 
-See default_config for a complete list of overridable settings.
+See 'default_config.py' for a complete list of overridable settings.
 """
 
 
@@ -13,7 +13,7 @@ SECRET_KEY = 'uZLgrzmxYzBRBhzAiffm'
 
 # Logging settings
 ERROR_EMAIL_INFO = (('smtp.gmail.com', 587),
-                    '"Epio Error Notification" <epio.errors@gmail.com>', ['espo58@gmail.com'],
+                    '"Heroku Error Notification" <epio.errors@gmail.com>', ['espo58@gmail.com'],
                     'Tabhouse Error', ('epio.errors@gmail.com', '1UMbJXCNgCHvEoEiMiv9'))
 
 # Analytics settings
