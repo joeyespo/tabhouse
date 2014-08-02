@@ -30,6 +30,9 @@ strong {
 input {
     padding: 2px;
 }
+input[type="text"] {
+    width: 600px;
+}
 
 #wrap {
     margin: 0 auto 0 auto;
@@ -276,25 +279,25 @@ header p a:hover {
     body {
         background-color: white;
     }
-    
+
     a, a:visited {
         color: #520;
         background: transparent;
         font-weight: bold;
         text-decoration: none;
     }
-    
+
     .main-content img {
         display: none;
     }
     .main-content h1 a {
         margin-right: 0;
     }
-    
+
     #footer, .results-header, #song-text-result span, .song-actions {
         display: none;
     }
-    
+
     #song-text-result {
         margin-top: 0;
     }
