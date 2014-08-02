@@ -8,9 +8,6 @@ See 'default_config.py' for a complete list of overridable settings.
 """
 
 
-# Security settings
-SECRET_KEY = 'uZLgrzmxYzBRBhzAiffm'
-
 # Logging settings
 ERROR_EMAIL_INFO = (('smtp.gmail.com', 587),
                     '"Heroku Error Notification" <epio.errors@gmail.com>', ['espo58@gmail.com'],

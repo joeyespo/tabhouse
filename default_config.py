@@ -5,6 +5,8 @@ Do NOT change the values here.
 Override them in the instance/application_config.py file instead.
 """
 
+import os
+
 
 # Development settings
 DEBUG = None
@@ -19,7 +21,7 @@ LOGGING = {
 }
 
 # Security settings
-SECRET_KEY = None
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # Logging settings
 ERROR_EMAIL_INFO = None     # Format: ((HOST, PORT), FROM_ADDRESS, (TO_ADDRESS, ...), SUBJECT, (EMAIL_USER, EMAIL_PASS))
