@@ -1,7 +1,7 @@
 Tabhouse
 ========
 
-[![Homepage screenshot](artwork/screenshot-01.png)](http://tabhouse.org/)
+[![Homepage screenshot](artwork/screenshot-01.png)](http://tabhouse.herokuapp.com/)
 
 A web application that lets you find quality guitar tabs. It does so by sending
 a search request to Google, parsing the top page results, and displaying the
@@ -11,7 +11,7 @@ Here's an example rendered tab.
 
 ![Search results screenshot](artwork/screenshot-02.png)
 
-http://tabhouse.org
+http://tabhouse.herokuapp.com/
 
 
 History
