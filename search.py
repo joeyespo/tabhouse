@@ -79,6 +79,7 @@ def search_song(q, result_count=4, show_source=False):
 # TODO: Clean this up
 def get_pre_text(html):
     html_insensitive = html.lower()
+
     def between(s, beginswith='', endswith='', start=0, end=None):
         end = end or len(s)
         i = s.find(beginswith, start, end) if beginswith else 0
@@ -90,7 +91,7 @@ def get_pre_text(html):
     preList = []
     j = 0
     while True:
-        i, j = between(html_insensitive, '<pre>', '</pre>', j)
+        i, j = between(html_insensitive, '<pre', '</pre>', j)
         if j == -1:
             break
         preList.append(html[i:j].replace('<br>', '\n').replace('<BR>', '\n'))
