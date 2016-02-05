@@ -35,7 +35,7 @@ class Song(object):
                 if line == '': continue
                 # Find song tabs
                 line = line.lower()
-                staff_prefixes = ['|-'] + map(''.join, product('abcdefg', ['-', ':-', '|-', '||-']))
+                staff_prefixes = ['|-'] + map(''.join, product('abcdefg', ['-', ':-', '|-', '||-', 'b']))
                 if not starts_with_any(line, staff_prefixes):
                     continue
                 staffstrings.append(line[2:])
